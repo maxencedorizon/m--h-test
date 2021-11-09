@@ -1,19 +1,26 @@
-var end = new Date('5/22/2017 11:59 PM');
-var _second = 1000;
-var _minute = _second * 60;
-var _hour = _minute * 60;
+//transform seconds into minutes / hours / days for vanebot or other work the seconds var can be remplaced by a time like UTC what you want
 
-function clock(){
-    var now = new Date();
-    var distance = end - now;
-    var hours = Math.floor(distance / _hour);
-    var minutes = Math.floor((distance % _hour) / _minute);
-    var seconds = Math.floor((distance % _minute) / _second);
+var seconds = 0;
+var minutes = 0;
+var hours = 0;
+var days = 0;
 
-    console.log('début de la clock')
-    console.log(hours + ' hr restantes..');
-    console.log(minutes + ' min restantes..');
-    console.log(seconds + ' sec restantes..');
-}
+timer=setInterval(function() {
+  console.log(`${seconds} s, ${minutes} m, ${hours} h, ${days} d`);
+  seconds++
 
-var countdownTimer = setInterval(clock, 1000);
+  if(seconds == 60) {
+    seconds = 0;
+    minutes++
+
+  } if(minutes == 60) {
+    minutes = 0;
+    hours++
+
+  } if(hours == 24) {
+    hours = 0;
+    days++
+  }
+
+
+}, 1000);
